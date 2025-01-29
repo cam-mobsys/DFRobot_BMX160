@@ -155,46 +155,61 @@ void DFRobot_BMX160::setMagnConf()
 }
 
 void DFRobot_BMX160::setGyroRange(eGyroRange_t bits){
+    uint8_t gyro_range;
     switch (bits){
         case eGyroRange_125DPS:
             gyroRange = BMX160_GYRO_SENSITIVITY_125DPS;
+            gyro_range = BMX160_GYRO_RANGE_125_DPS;
             break;
         case eGyroRange_250DPS:
             gyroRange = BMX160_GYRO_SENSITIVITY_250DPS;
+            gyro_range = BMX160_GYRO_RANGE_250_DPS;
             break;
         case eGyroRange_500DPS:
             gyroRange = BMX160_GYRO_SENSITIVITY_500DPS;
+            gyro_range = BMX160_GYRO_RANGE_500_DPS;
             break;
         case eGyroRange_1000DPS:
             gyroRange = BMX160_GYRO_SENSITIVITY_1000DPS;
+            gyro_range = BMX160_GYRO_RANGE_1000_DPS;
             break;
         case eGyroRange_2000DPS:
             gyroRange = BMX160_GYRO_SENSITIVITY_2000DPS;
+            gyro_range = BMX160_GYRO_RANGE_2000_DPS;
             break;
         default:
             gyroRange = BMX160_GYRO_SENSITIVITY_250DPS;
+            gyro_range = BMX160_GYRO_RANGE_250_DPS;
             break;
     }
+    writeBmxReg(BMX160_GYRO_RANGE_ADDR, gyro_range);
 }
 
 void DFRobot_BMX160::setAccelRange(eAccelRange_t bits){
+    uint8_t acc_range;
     switch (bits){
         case eAccelRange_2G:
             accelRange = BMX160_ACCEL_MG_LSB_2G * 10;
+            acc_range = BMX160_ACCEL_RANGE_2G;
             break;
         case eAccelRange_4G:
             accelRange = BMX160_ACCEL_MG_LSB_4G * 10;
+            acc_range = BMX160_ACCEL_RANGE_4G;
             break;
         case eAccelRange_8G:
             accelRange = BMX160_ACCEL_MG_LSB_8G * 10;
+            acc_range = BMX160_ACCEL_RANGE_8G;
             break;
         case eAccelRange_16G:
             accelRange = BMX160_ACCEL_MG_LSB_16G * 10;
+            acc_range = BMX160_ACCEL_RANGE_16G;
             break;
         default:
             accelRange = BMX160_ACCEL_MG_LSB_2G * 10;
+            acc_range = BMX160_ACCEL_RANGE_2G;
             break;
     }
+    writeBmxReg(BMX160_ACCEL_RANGE_ADDR, acc_range);
 }
 
 void DFRobot_BMX160::getAllData(sBmx160SensorData_t *magn, sBmx160SensorData_t *gyro, sBmx160SensorData_t *accel){
